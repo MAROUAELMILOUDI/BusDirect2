@@ -5,32 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./output.css">
     <title>BusDirect2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="bg-[#F3F6FF] min-h-screen">
     <header class="bg-white">
         <div class="border-b border-[#E1E8F5]">
             <div class="mx-auto grid max-w-6xl grid-cols-2 items-center gap-3 px-6 py-3 sm:grid-cols-3">
-                <img src="img/busdirect-logo.svg" alt="BusDirect" class="h-10 w-auto">
-                <p class="order-last col-span-2 text-center text-sm font-bold text-[#0F1B3D] sm:order-none sm:col-span-1">
-                    Safi → Marrakech
-                </p>
+                <img src="img/busdirect-logo.svg" alt="BusDirect" class="h-10 w-auto"> 
                 <div class="justify-self-end">
                     <span class="rounded-full bg-[#E8EEFF] px-3 py-1 text-xs font-semibold text-[#1D4BFF]">
-                        80 DH / seat
+                        Trajets
                     </span>
                 </div>
             </div> 
-        </div> 
-        <nav class="border-b border-[#E1E8F5]">
-            <div class="mx-auto max-w-6xl px-6">
-                <a href="#" class="inline-block border-b-2  py-3 text-xs font-bold border-[#1D4BFF] text-[#1D4BFF]">
-                    Reservation
-                </a>
+        </div>
+    </header>
+    <main class="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6">
+        <section class="container mx-auto">
+            <div class="pageIntroduction py-3 ml-4">
+                <p class="text-lg font-bold text-[#1D4BFF]">Trajets</p>
+                <p class="text-sm text-gray-500">Retrouver les departs du réseau et gérez vos cabines en un coup d'oeil.</p>
             </div>
-        </nav>
-    </header>   
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white rounded-xl p-4 shadow flex items-center gap-3">
+                    <div>
+                        <p class="text-xs text-gray-500">Recette totale du réseau</p>
+                        <p id="prix-Total" class="text-xl font-bold">12 450 DH</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow flex items-center gap-3">
+                    <div>
+                        <p class="text-xs text-gray-500">Passagers du réseau</p>
+                        <p id="totalRevenue" class="text-xl font-bold">86</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>   
     <footer class="text-xs text-center">
         BusDirect - A seat for every journey.
     </footer>
+    <script></script>
 </body>
 </html>
