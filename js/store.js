@@ -16,7 +16,16 @@ async function chargeDonnees() {
 function sauvegarder(trips){
     localStorage.setItem("trips", JSON.stringify(trips));
 }
-const trips = await chargeDonnees();
-if(trips){
-    sauvegarder(trips);
+
+async function initialiser() {
+    const donnees = localStorage.getItem("trips");
+    if(donnees){
+        return JSON.parse(donnees);
+    }
+    const trips = await chargeDonnees();
+    if(trips){
+        sauvegarder(trips);
+    }
+    return trips;
 }
+export { chargeDonnees, sauvegarder, initialiser };
