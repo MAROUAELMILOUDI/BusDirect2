@@ -1,3 +1,4 @@
+export let trips = [];
 async function chargeDonnees() {
     try{
         const response = await fetch("./data/trips.json");
@@ -9,6 +10,7 @@ async function chargeDonnees() {
     }
     catch(error){
         console.error(error.message);
+        return [];
     }
 }
 
@@ -20,12 +22,14 @@ function sauvegarder(trips){
 async function initialiser() {
     const donnees = localStorage.getItem("trips");
     if(donnees){
-        return JSON.parse(donnees);
+        trips = JSON.parse(donnees);
+        return trips;
     }
-    const trips = await chargeDonnees();
-    if(trips){
-        sauvegarder(trips);
+    const data = await chargeDonnees();
+    if(data.length > 0){
+        sauvegarder(data);
     }
+    trips = data;
     return trips;
 }
 export { chargeDonnees, sauvegarder, initialiser };
