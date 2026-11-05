@@ -14,3 +14,10 @@ async function demarrer() {
     }   
 }
 demarrer()
+
+document.addEventListener("click", function(event){
+    if(event.target.classList.contains("voir-cabin")){
+        const id = event.target.dataset.id;
+        location.href = `./cabin.html?id=${id}`;
+    }
+});

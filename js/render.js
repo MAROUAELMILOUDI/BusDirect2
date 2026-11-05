@@ -34,7 +34,7 @@ export function renderTrips(modifiedTrips, page,size){
         </div>
         <div class="flex items-center justify-between">
             <p class="font-semibold text-sm">${trip.price} DH</p>
-            <button class="border border-cyan-500 text-cyan-500 rounded-lg px-3 py-1 text-sm hover:bg-blue-100">Voir la cabin</button>
+            <button class="voir-cabin border border-cyan-500 text-cyan-500 rounded-lg px-3 py-1 text-sm hover:bg-blue-100" data-id="${trip.id}">Voir la cabin</button>
         </div>`;
         trajets.appendChild(card);      
     });

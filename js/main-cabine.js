@@ -25,18 +25,7 @@ function getItem(){
 }
 
 let reservations = [];
-let timer;
-
-// for (let i = 0; i < places.length; i++) {
-//     const numero = places[i].querySelector(".numero").textContent.trim();
-//     const nom = places[i].querySelector(".statut").textContent.trim();
-//     if (nom !== "Libre") {
-//         reservations.push({
-//             siege: numero,
-//             nom: nom
-//         });
-//     }
-// }
+let timer; 
 
 function statistiques(){
     const placesDispo = document.getElementById('availableSeats');
@@ -304,3 +293,34 @@ modifierList();
 
 
 
+import{ initialiser } from "./store.js";
+async function afficherCabin(){
+    const urlParams = new URLSearchParams(location.search);
+    const idParam = urlParams.get("id");
+    if(!idParam){
+        document.body.innerHTML = `<div class="p-8 text-center text-red-600 font-bold text-xl">Trajet introuvable</div>`;
+        return;
+    }
+    const id = Number(idParam);
+    const trips = await initialiser();
+    const trip = trips.find(t => t.id === id);
+    if(!trip){
+        document.body.innerHTML = `<div class="p-8 text-center text-red-600 font-bold text-xl">Trajet introuvable</div>`;
+        return;
+    }
+    const headerTitle = document.querySelector(".pageIntroduction p:nth-child(1)");
+    if(headerTitle) headerTitle.textContent = `${trip.departure} → ${trip.destination}`;
+    const headerTime = document.querySelector(".pageIntroduction p:nth-child(2)");
+    if(headerTime) headerTime.textContent = `départ : ${trip.departureTime} | Arrivée : ${trip.arrivalTime}`;
+    const headerPrice = document.querySelector("header .justify-self-end span");
+    if(headerPrice) headerPrice.textContent = `${trip.price} DH / seat`;
+
+    const totalReservations = trip.reservations ? trip.reservations.length : 0;
+    const availableSeatsCount = trip.capacity - totalReservations;
+    const totalRevenueAmount = totalReservations * trip.price;
+    const availableSeats = document.getElementById("availableSeat");
+    if(availableSeats) availableSeats.textContent = availableSeatsCount;
+    const totalRevenue = document.getElementById("totalRevenue");
+    if(totalRevenue) totalRevenue.textContent = `${totalRevenueAmount} DH`; 
+}
+afficherCabin();
