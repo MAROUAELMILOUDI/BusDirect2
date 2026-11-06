@@ -22,7 +22,7 @@ function sauvegarder(trips){
 async function initialiser() {
     const donnees = localStorage.getItem("trips");
     if(donnees){
-        trips = JSON.parse(donnees);
+        trips = JSON.parse(donnees);;
         return trips;
     }
     const data = await chargeDonnees();
