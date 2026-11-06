@@ -44,38 +44,50 @@ async function afficheSiege(trip){
         const article = document.getElementById(`place${num}`);
         if(!article) continue;
 
-        const occupe = article.querySelector(".statut");
+        const numeroSpan = article.querySelector(".numero");
         const statutSpan = article.querySelector(".statut");
         const vip = estVIP(num);
         const reservation = trip.reservations.find(r => Number(r.seat) === num);
-
-        if(vip){
-            article.className = "Place flex h-16 min-w-0 flex-col items-center justify-center overflow-hidden rounded-lg border-2 border-[#FEEC41] bg-white text-[#FEEC41]";
-            if(statutSpan){
-                statutSpan.textContent = "VIP";
-                statutSpan.className = "statut mt-1 text-[11px] text-[#5B6785]";
-            }
-        } else{
-            article.className = "Place flex h-16 min-w-0 flex-col items-center justify-center overflow-hidden rounded-lg border-2 border-[#1D4BFF] bg-white text-[#1D4BFF]";
-            if(statutSpan){
-                statutSpan.textContent = "Libre";
-                statutSpan.className = "statut mt-1 text-[11px] text-[#5B6785]";
-            }
-        }
-
-        if(occupe && statutSpan){
+        article.className = "Place flex h-16 min-w-0 flex-col items-center justify-center overflow-hidden rounded-lg border-2";
+        if(reservation){
             if(vip){
-                article.classList.remove("bg-white", "text-[#FEEC41]");
-                article.classList.add("bg-[#FEEC41]/30", "text-[#0F1B3D]");
-                statutSpan.textContent = reservation.name;
-                statutSpan.classList.remove("text-[#5B6785]");
-                statutSpan.classList.add("truncate", "text-[#0F1B3D]", "font-semibold");
+                article.classList.add("border-[#FEEC41]", "bg-[#FEEC41]/30", "text-[#0F1B3D]");
+                if(numeroSpan){
+                    numeroSpan.textContent = num
+                }
+                if(statutSpan){
+                    statutSpan.textContent = reservation.name;
+                    statutSpan.className = "statut mt-1 text-[11px] font-semibold truncate text-[#0F1B3D]";
+                }
             } else{
-                article.classList.remove("bg-white", "border-[#1D4BFF]", "text-[#1D4BFF]");
-                article.classList.add("bg-[#1D4BFF]", "border-[#1D4BFF]", "text-white");
-                statutSpan.textContent = reservation.name;
-                statutSpan.classList.remove("text-gray-500", "text-[#1D4BFF]");
-                statutSpan.classList.add("truncate", "maw-w-full", "text-white");
+                article.classList.add("border-[#1D4BFF]", "bg-[#1D4BFF]", "text-white");
+                if(numeroSpan){
+                    numeroSpan.textContent = num
+                }
+                if(statutSpan){
+                    statutSpan.textContent = reservation.name;
+                    statutSpan.className = "statut mt-1 text-[11px] font-semibold truncate text-white";
+                }
+            }
+        }else{
+            if(vip){
+                article.classList.add("border-[#FEEC41]", "bg-white", "text-[#FEEC41]")
+                if(numeroSpan){
+                    numeroSpan.textContent = "VIP";
+                }
+                if(statutSpan){
+                    statutSpan.textContent = "VIP";
+                    statutSpan.className = "statut mt-1 text-[11px] text-[#5B6785]";
+                }
+            } else{
+                article.classList.add("border-[#1D4BFF]", "bg-white", "text-[#1D4BFF]");
+                if(numeroSpan){
+                    numeroSpan.textContent = num
+                }
+                if(statutSpan){
+                    statutSpan.textContent = "Libre";
+                    statutSpan.className = "statut mt-1 text-[11px] text-[#5B6785]";
+                }
             }
         }
     }
