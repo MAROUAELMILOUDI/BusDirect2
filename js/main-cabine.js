@@ -53,7 +53,7 @@ async function afficheSiege(trip){
             if(vip){
                 article.classList.add("border-[#FEEC41]", "bg-[#FEEC41]/30", "text-[#0F1B3D]");
                 if(numeroSpan){
-                    numeroSpan.textContent = num
+                    numeroSpan.textContent = "VIP"
                 }
                 if(statutSpan){
                     statutSpan.textContent = reservation.name;
@@ -73,7 +73,7 @@ async function afficheSiege(trip){
             if(vip){
                 article.classList.add("border-[#FEEC41]", "bg-white", "text-[#FEEC41]")
                 if(numeroSpan){
-                    numeroSpan.textContent = "VIP";
+                    numeroSpan.textContent = num;
                 }
                 if(statutSpan){
                     statutSpan.textContent = "VIP";
