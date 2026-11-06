@@ -21,9 +21,12 @@ function sauvegarder(trips){
 
 async function initialiser() {
     const donnees = localStorage.getItem("trips");
-    if(donnees){
-        trips = JSON.parse(donnees);;
-        return trips;
+    if(donnees && donnees !== "undefined" && donnees !== null){
+        try{
+            return trips = JSON.parse(donnees);
+        } catch(e){
+            console.error("Corrupt local storage data, resetting...")
+        }
     }
     const data = await chargeDonnees();
     if(data.length > 0){
